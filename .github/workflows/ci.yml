@@ -1,22 +1,26 @@
-
 name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
-  verify:
-    name: Vérifier le portfolio
+  verifier:
     runs-on: ubuntu-latest
-
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
 
-      - name: Vérifier les fichiers du portfolio
+      - name: Vérifier que les 3 fichiers existent
         run: |
           test -f index.html
           test -f style.css
           test -f script.js
-          echo "Tous les fichiers sont présents !"
+
+      - name: Valider le HTML
+        run: npx --yes html-validate index.html
+
+      - name: Vérifier la syntaxe du JavaScript
+        run: node --check script.js

@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "close-order": "error",
+    "no-dup-id": "error",
+    "element-permitted-content": "error"
+  }
+}
